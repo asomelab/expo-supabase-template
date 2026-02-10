@@ -1,5 +1,4 @@
 import type { PropsWithChildren, ReactElement } from 'react';
-import { StyleSheet } from 'react-native';
 import Animated, {
   interpolate,
   useAnimatedRef,
@@ -7,9 +6,9 @@ import Animated, {
   useScrollViewOffset,
 } from 'react-native-reanimated';
 
-import { ThemedView } from '@/components/ThemedView';
-import { useBottomTabOverflow } from '@/components/ui/TabBarBackground';
-import { useColorScheme } from '@/hooks/useColorScheme';
+import { ThemedView } from '@/components/themed-view';
+import { useBottomTabOverflow } from '@/components/ui/tab-bar-background';
+import { useColorScheme } from '@/hooks/use-color-scheme';
 
 const HEADER_HEIGHT = 250;
 
@@ -34,7 +33,7 @@ export default function ParallaxScrollView({
           translateY: interpolate(
             scrollOffset.value,
             [-HEADER_HEIGHT, 0, HEADER_HEIGHT],
-            [-HEADER_HEIGHT / 2, 0, HEADER_HEIGHT * 0.75]
+            [-HEADER_HEIGHT / 2, 0, HEADER_HEIGHT * 0.75],
           ),
         },
         {
@@ -45,38 +44,24 @@ export default function ParallaxScrollView({
   });
 
   return (
-    <ThemedView style={styles.container}>
+    <ThemedView className="flex-1">
       <Animated.ScrollView
         ref={scrollRef}
         scrollEventThrottle={16}
         scrollIndicatorInsets={{ bottom }}
-        contentContainerStyle={{ paddingBottom: bottom }}>
+        contentContainerStyle={{ paddingBottom: bottom }}
+      >
         <Animated.View
           style={[
-            styles.header,
-            { backgroundColor: headerBackgroundColor[colorScheme] },
+            { height: HEADER_HEIGHT, backgroundColor: headerBackgroundColor[colorScheme] },
             headerAnimatedStyle,
-          ]}>
+          ]}
+          className="overflow-hidden"
+        >
           {headerImage}
         </Animated.View>
-        <ThemedView style={styles.content}>{children}</ThemedView>
+        <ThemedView className="flex-1 gap-4 overflow-hidden p-8">{children}</ThemedView>
       </Animated.ScrollView>
     </ThemedView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  header: {
-    height: HEADER_HEIGHT,
-    overflow: 'hidden',
-  },
-  content: {
-    flex: 1,
-    padding: 32,
-    gap: 16,
-    overflow: 'hidden',
-  },
-});

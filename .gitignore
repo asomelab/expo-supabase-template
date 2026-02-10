@@ -40,9 +40,6 @@ yarn-error.*
 # typescript
 *.tsbuildinfo
 
-# Reactotron
-reactotron-*.log
-
 # EAS
 .eas/local
 credentials.json
@@ -67,10 +64,5 @@ pnpm-debug.log*
 .vscode/
 !.vscode/extensions.json
 !.vscode/settings.json
-
-# Lock
-package-lock.json
-yarn.lock
-pnpm-lock.yaml
 
 app-example

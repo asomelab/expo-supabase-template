@@ -1,53 +1,47 @@
-import { supabase } from "@/lib/supabase";
-import { useEffect, useState } from "react";
-import { FlatList, StyleSheet, Text, View } from "react-native";
+import { FlashList } from '@shopify/flash-list';
+import { ActivityIndicator, Text, View } from 'react-native';
 
-type Instrument = {
-  id: number;
-  name: string;
-};
+import { useInstruments } from '@/hooks/queries/use-instruments';
+import type { Instrument } from '@/schemas';
 
-export default function App() {
-  const [instruments, setInstruments] = useState<Instrument[]>([]);
+export default function HomeScreen() {
+  const { data: instruments, isLoading, error } = useInstruments();
 
-  useEffect(() => {
-    getInstruments();
-  }, []);
-
-  async function getInstruments() {
-    if (__DEV__) {
-      console.tron.log("Fetching instruments...");
-    }
-
-    const { data } = await supabase.from("instruments").select();
-    setInstruments(data ?? []);
-
-    if (__DEV__) {
-      console.tron.log("Instruments fetched:", data);
-    }
+  if (isLoading) {
+    return (
+      <View className="flex-1 items-center justify-center bg-surface-light dark:bg-surface-dark">
+        <ActivityIndicator size="large" />
+      </View>
+    );
   }
 
+  if (error) {
+    return (
+      <View className="flex-1 items-center justify-center bg-surface-light px-4 dark:bg-surface-dark">
+        <Text className="text-center text-red-500">
+          Failed to load instruments: {error.message}
+        </Text>
+      </View>
+    );
+  }
+
+  const renderItem = ({ item }: { item: Instrument }) => (
+    <View className="border-b border-gray-200 px-4 py-4 dark:border-gray-700">
+      <Text className="text-base text-gray-900 dark:text-gray-100">{item.name}</Text>
+      {item.symbol && (
+        <Text className="mt-0.5 text-sm text-muted-light dark:text-muted-dark">{item.symbol}</Text>
+      )}
+    </View>
+  );
+
   return (
-    <View style={styles.container}>
-      <FlatList
+    <View className="flex-1 bg-surface-light pt-12 dark:bg-surface-dark">
+      <FlashList
         data={instruments}
+        renderItem={renderItem}
+        estimatedItemSize={65}
         keyExtractor={(item) => item.id.toString()}
-        renderItem={({ item }) => <Text style={styles.item}>{item.name}</Text>}
       />
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    paddingTop: 50,
-    paddingHorizontal: 16,
-  },
-  item: {
-    padding: 16,
-    borderBottomWidth: 1,
-    borderBottomColor: "#ccc",
-  },
-});
