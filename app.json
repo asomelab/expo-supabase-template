@@ -1,0 +1,57 @@
+{
+  "expo": {
+    "name": "lasu-financial",
+    "slug": "lasu-financial",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/icon.png",
+    "scheme": "lasu-financial",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.juanpablovaldez.lasufinancial"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "edgeToEdgeEnabled": true,
+      "package": "com.juanpablovaldez.lasufinancial"
+    },
+    "web": {
+      "bundler": "metro",
+      "output": "static",
+      "favicon": "./assets/images/favicon.png"
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/images/splash-icon.png",
+          "imageWidth": 200,
+          "resizeMode": "contain",
+          "backgroundColor": "#ffffff"
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "488fe2de-eda0-41f1-871f-6d42670d3c21"
+      }
+    },
+    "owner": "juanpablo.valdez",
+    "updates": {
+      "url": "https://u.expo.dev/488fe2de-eda0-41f1-871f-6d42670d3c21"
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    }
+  }
+}
