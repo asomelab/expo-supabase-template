@@ -46,12 +46,12 @@
     "extra": {
       "router": {},
       "eas": {
-        "projectId": "488fe2de-eda0-41f1-871f-6d42670d3c21"
+        "projectId": "9b4e5b09-e4e8-4a9d-802b-a441d3998dce"
       }
     },
-    "owner": "juanpablo.valdez",
+    "owner": "juanpablovaldez",
     "updates": {
-      "url": "https://u.expo.dev/488fe2de-eda0-41f1-871f-6d42670d3c21"
+      "url": "https://u.expo.dev/9b4e5b09-e4e8-4a9d-802b-a441d3998dce"
     },
     "runtimeVersion": {
       "policy": "appVersion"
