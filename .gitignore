@@ -31,9 +31,46 @@ yarn-error.*
 *.pem
 
 # local env files
+.env
 .env*.local
+.env.development
+.env.production
+.env.staging
 
 # typescript
 *.tsbuildinfo
+
+# Reactotron
+reactotron-*.log
+
+# EAS
+.eas/local
+credentials.json
+
+# Testing
+coverage/
+.nyc_output/
+junit.xml
+
+# Logs
+logs/
+*.log
+
+# Temporary files
+tmp/
+temp/
+
+# pnpm
+pnpm-debug.log*
+
+# IDE - VSCode workspace settings (keeping _vscode/ as it seems intentional)
+.vscode/
+!.vscode/extensions.json
+!.vscode/settings.json
+
+# Lock
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
 
 app-example
