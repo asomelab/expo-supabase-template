@@ -65,4 +65,21 @@ pnpm-debug.log*
 !.vscode/extensions.json
 !.vscode/settings.json
 
+# Expo
+.expo/
+dist/
+web-build/
+expo-env.d.ts
+
+# Native
+ios/
+android/
+.kotlin/
+*.orig.*
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+
 app-example
